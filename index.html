@@ -9,12 +9,12 @@
     <style>
         body {
             background-image: url("bg.jpg");
-            background-size: cover;           
+            background-size: cover;            
             background-position: center;      
             background-attachment: fixed;     
             background-color: #222;
             color: #ffffff;            
-            font-family: sans-serif;   
+            font-family: sans-serif;    
             margin: 0;
             padding: 20px;
             transition: background-image 0.5s ease;
@@ -46,7 +46,7 @@
 
         .tokei-box {
             background: rgba(0, 0, 0, 0.3); 
-            display: inline-block;   
+            display: inline-block;    
             padding: 10px 15px;            
             border-radius: 8px;      
             margin-bottom: 20px;
@@ -130,14 +130,6 @@
         .audio-credit a {
             color: #3b82f6;
             text-decoration: none;
-        }
-
-        .comment-box {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 10px;
-            border-radius: 6px;
-            margin-bottom: 10px;
-            font-size: 14px;
         }
 
         input, button, select {
@@ -249,6 +241,24 @@
             background-color: #3b82f6; 
         }
 
+        /* 折りたたみ用スタイル */
+        .collapsible-content {
+            display: none;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .collapsible-content.show {
+            display: block;
+        }
+        .toggle-section-btn {
+            background-color: #6366f1;
+            margin-top: 15px;
+            font-size: 13px;
+        }
+        .toggle-section-btn:hover {
+            background-color: #4f46e5;
+        }
+
         /* 🚀 初期設定モーダル画面 */
         .modal-overlay {
             display: none;
@@ -302,11 +312,11 @@
             <p id="label-init-title" style="margin: 0 0 10px 0; font-size: 18px; font-weight: bold; text-align: center; color: #a855f7;">✨ はじめての初期設定</p>
             <p style="font-size: 12px; color: #ccc; text-align: center; margin-bottom: 15px;">お好みの設定を選んでください。（後からいつでも変更できます）</p>
 
-               <p id="label-init-bg" style="margin: 0 0 5px 0; font-size: 14px; font-weight: bold;">🎨 背景デザイン変更</p>
+             <p id="label-init-bg" style="margin: 0 0 5px 0; font-size: 14px; font-weight: bold;">🎨 背景デザイン変更</p>
             <select id="init-bg-selector" class="bg-select" onchange="syncFromInit('bg')">
                 <option value="bg.jpg">windows11背景</option>
                 <option value="2054115ca660bda6ce7e56dd701de7ca_t.jpeg">にじ背景</option>
-                <option valueMC.png">マイクラ背景</option>
+                <option value="MC.png">マイクラ背景</option>
             </select>
             
             <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.2); margin: 12px 0;">
@@ -351,9 +361,6 @@
             <div id="setting-box" style="display: none; background: rgba(0, 0, 0, 0.5); padding: 15px; border-radius: 12px; border: 2px solid rgba(255, 255, 255, 0.3); max-width: 400px; margin-top: 15px;">
                 <p id="label-setting-title" style="margin: 0 0 10px 0; font-size: 16px; font-weight: bold; text-align: center; color: #a855f7;">🛠️ 設定メニュー</p>
                 
-  
-  
-
                 <p id="label-bg-title" style="margin: 0 0 5px 0; font-size: 14px; font-weight: bold;">🎨 背景デザイン変更</p>
                 <select id="bg-selector" class="bg-select" onchange="changeBackground()">
                     <option value="bg.jpg">windows11背景</option>
@@ -418,112 +425,121 @@
             
             <button id="btn-toggle-settings" onclick="toggleSettings()" style="background-color: #a855f7; margin-bottom: 10px; font-size: 15px;">⚙️ 設定をひらく / とじる</button>
 
-            <a id="link-news" class="link-btn ai-btn" href="https://cogie0806.github.io/weather/">⛅ cogie0806天気を開く</a>
-            <a id="link-news" class="link-btn ai-btn" href="https://cogie0806.github.io/news/">📰 cogie0806ニュースを開く</a>
-            <a id="link-news" class="link-btn ai-btn" href="https://cogie0806.github.io/minecraft-wiki/">cogie0806マイクラwikiを開く</a>
-            <a id="link-paint" class="link-btn ai-btn" href="https://cogie0806.github.io/Drawing/">🎨 cogie0806ペイントエディタで絵を描く</a>
-            <a id="link-search" class="link-btn ai-btn" href="https://cogie0806.github.io/Search-cogie0806/">🔍 cogie0806検索で調べる</a>
-            <a id="link-ai" class="link-btn ai-btn" href="https://cogie0806.github.io/AI/">🤖 AI/cogie0806をひらく</a>
-            <a id="link-youtube" class="link-btn" href="https://youtube.com">📺 YouTubeをひらく</a>
-            <a id="link-google" class="link-btn" href="https://google.com">🔍 Googleで調べる</a>
-            <a id="link-chat" class="link-btn" href="https://chat.google.com">💬 google chatでチャットする</a>
-            <a id="link-weather" class="link-btn" style="background-color: #ef4444;" href="https://weather.yahoo.co.jp">⛅ Y!天気を開く</a>
-            <a id="link-yahoo" class="link-btn" style="background-color: #ef4444;" href="https://yahoo.co.jp">🔴 Yahoo!を開く</a>
-            <a id="link-scratch" class="link-btn" style="background-color: #ffab19;" href="https://scratch.mit.edu/users/cogie0806/">🟠 Scratchでプログラミングする</a>    
+            <a class="link-btn ai-btn" href="https://cogie0806.github.io/weather/">⛅ cogie0806天気を開く</a>
+            <a class="link-btn ai-btn" href="https://cogie0806.github.io/news/">📰 cogie0806ニュースを開く</a>
+            <a class="link-btn ai-btn" href="https://cogie0806.github.io/minecraft-wiki/">cogie0806マイクラwikiを開く</a>
+            <a class="link-btn ai-btn" href="https://cogie0806.github.io/Drawing/">🎨 cogie0806ペイントエディタで絵を描く</a>
+            <a class="link-btn ai-btn" href="https://cogie0806.github.io/Search-cogie0806/">🔍 cogie0806検索で調べる</a>
+            <a class="link-btn ai-btn" href="https://cogie0806.github.io/AI/">🤖 AI/cogie0806をひらく</a>
+            <a class="link-btn" href="https://youtube.com">📺 YouTubeをひらく</a>
+            <a class="link-btn" href="https://google.com">🔍 Googleで調べる</a>
+            <a class="link-btn" href="https://chat.google.com">💬 google chatでチャットする</a>
+            <a class="link-btn" style="background-color: #ef4444;" href="https://weather.yahoo.co.jp">⛅ Y!天気を開く</a>
+            <a class="link-btn" style="background-color: #ef4444;" href="https://yahoo.co.jp">🔴 Yahoo!を開く</a>
+            <a class="link-btn" style="background-color: #ffab19;" href="https://scratch.mit.edu/users/cogie0806/">🟠 Scratchでプログラミングする</a>    
 
               <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.2); margin: 12px 0;">
         
             <div style="background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.3); padding: 12px; border-radius: 8px;">
                 <p><b id="about-title">このページについて</b></p>
-
                 <p><b id="about-p1">1.僕について</b></p>
                 <p id="about-p2">はじめまして。</p>
                 <p>cogie0806です。</p>
-
                 <p id="about-p3">よろしければ僕のフォローよろしくお願いいたします。</p>
                 <a href="https://scratch.mit.edu/users/cogie0806/" target="_blank">・Scratch</a><br>
                 <a href="https://minecraft-mcworld.com/author/a850cd4c8614f807c8bf03559472f5933a301cd2/" target="_blank">・クラフターズコロニー</a><br>
                 <a href="https://www.roblox.com/ja/users/10697827229/profile" target="_blank">・Roblox</a>
-
                 <p><b id="about-p4">2.このページの作者</b></p>
                 <p id="about-p5">リクエスト・アップロード・簡単なバグ修正: cogie0806</p>
                 <p id="about-p6">HTML作成: Google AI様</p>
-
                 <p id="about-p7">このページの説明は以上です。</p>
                 <p>cogie0806</p>
             </div>
 
-            <div class="player-box">
-                <p id="label-music-title" style="margin: 0 0 5px 0; font-size: 14px; font-weight: bold; text-align: center;">🎵 音楽プレイヤー</p>
-                <select id="audio-selector" class="player-select" onchange="changeMusic()">
-                    <option id="opt-music-default" value="">-- 曲をえらんでね --</option>
-                    <option value="erize.mp3">エリーゼのために</option>
-                    <option value="Jingle_Bells-MB03-1(Reverb-Slow).mp3">ジングルベル(オルゴール)</option>
-                </select>
-                <audio id="bgm-player" controls style="width: 100%; margin-top: 8px; height: 32px;"></audio>
-                
-                <p id="label-music-upload" style="margin: 10px 0 3px 0; font-size: 12px; text-align: center;">📥 じぶんのmp3を追加して保存する</p>
-                <input type="file" id="audio-uploader" accept="audio/mp3" style="font-size: 12px;" onchange="uploadMusic(event)">
-                
-                <div class="audio-credit">
-                    エリーゼのために提供：<a href="https://pocket-se.info" target="_blank" rel="noopener">ポケットサウンド</a>
-                    ジングルベル(オルゴール)提供：<a href="https://otologic.jp/" target="_blank" rel="noopener">OtoLogic</a>
+            <!-- 🎵 音楽プレイヤー（折りたたみ可能） -->
+            <button class="toggle-section-btn" onclick="toggleSection('music-section')">🎵 音楽プレイヤーをひらく / とじる</button>
+            <div id="music-section" class="collapsible-content">
+                <div class="player-box" style="margin-top: 5px;">
+                    <select id="audio-selector" class="player-select" onchange="changeMusic()">
+                        <option id="opt-music-default" value="">-- 曲をえらんでね --</option>
+                        <option value="erize.mp3">エリーゼのために</option>
+                        <option value="Jingle_Bells-MB03-1(Reverb-Slow).mp3">ジングルベル(オルゴール)</option>
+                    </select>
+                    <audio id="bgm-player" controls style="width: 100%; margin-top: 8px; height: 32px;"></audio>
+                    
+                    <p id="label-music-upload" style="margin: 10px 0 3px 0; font-size: 12px; text-align: center;">📥 じぶんのmp3を追加して保存する</p>
+                    <input type="file" id="audio-uploader" accept="audio/mp3" style="font-size: 12px;" onchange="uploadMusic(event)">
+                    
+                    <div class="audio-credit">
+                        エリーゼのために提供：<a href="https://pocket-se.info" target="_blank" rel="noopener">ポケットサウンド</a><br>
+                        ジングルベル(オルゴール)提供：<a href="https://otologic.jp/" target="_blank" rel="noopener">OtoLogic</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ⏱ タイマー（折りたたみ可能） -->
+            <button class="toggle-section-btn" onclick="toggleSection('timer-section')">⏱ タイマーをひらく / とじる</button>
+            <div id="timer-section" class="collapsible-content">
+                <div class="timer-box" style="margin-top: 5px;">
+                    <p id="label-timer-title" style="margin: 0; font-size: 14px;">タイマー（秒数を入力）</p>
+                    <input type="number" id="timer-input" placeholder="例: 60" min="1">
+                    <div id="timer-display">00:00</div>
+                    <div class="timer-buttons">
+                        <button id="start-btn" onclick="startTimer()">スタート</button>
+                        <button id="stop-btn" onclick="stopTimer()">ストップ</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 🧮 電卓（折りたたみ可能） -->
+            <button class="toggle-section-btn" onclick="toggleSection('calc-section')">🧮 電卓をひらく / とじる</button>
+            <div id="calc-section" class="collapsible-content">
+                <div class="calc-box" style="margin-top: 5px;">
+                    <input type="text" id="calc-screen" readonly value="0">
+                    <div class="calc-buttons">
+                        <button id="btn-calc-clear" class="clear" onclick="clearCalc()">けす</button>
+                        <button class="operator" onclick="pressOperator('/')">÷</button>
+                        <button class="operator" onclick="pressOperator('*')">×</button>
+                        <button class="operator" onclick="pressOperator('-')">－</button>
+                        
+                        <button onclick="pressNum('7')">7</button>
+                        <button onclick="pressNum('8')">8</button>
+                        <button onclick="pressNum('9')">9</button>
+                        <button class="operator" onclick="pressOperator('+')">＋</button>
+                        
+                        <button onclick="pressNum('4')">4</button>
+                        <button onclick="pressNum('5')">5</button>
+                        <button onclick="pressNum('6')">6</button>
+                        <button class="equal" style="grid-column: 4; grid-row: 3 / span 2; height: 100%;" onclick="calculate()">＝</button>
+                        
+                        <button onclick="pressNum('1')">1</button>
+                        <button onclick="pressNum('2')">2</button>
+                        <button onclick="pressNum('3')">3</button>
+                        
+                        <button style="grid-column: span 2;" onclick="pressNum('0')">0</button>
+                        <button onclick="pressNum('.')">.</button>
+                    </div>
                 </div>
             </div>
 
             <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.3); margin: 15px 0;">
 
-            <div class="timer-box">
-                <p id="label-timer-title" style="margin: 0; font-size: 14px;">⏱ タイマー（秒数を入力）</p>
-                <input type="number" id="timer-input" placeholder="例: 60" min="1">
-                <div id="timer-display">00:00</div>
-                <div class="timer-buttons">
-                    <button id="start-btn" onclick="startTimer()">スタート</button>
-                    <button id="stop-btn" onclick="stopTimer()">ストップ</button>
-                </div>
+            <!-- Googleフォーム -->
+            <div style="background-color: #ffffff; padding: 10px; border-radius: 8px; margin: 10px 0;">
+              <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdPhwenRq9KiQ8N4PnseBWHR-OwWHDx0vucpUCflNeibR3VQw/viewform?embedded=true" width="100%" height="400" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます…</iframe>
             </div>
 
-            <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.3); margin: 15px 0;">
-
-            <div class="calc-box">
-                <p id="label-calc-title" style="margin: 0 0 8px 0; font-size: 14px; text-align: center; font-weight: bold;">🧮 電卓</p>
-                <input type="text" id="calc-screen" readonly value="0">
-                <div class="calc-buttons">
-                    <button id="btn-calc-clear" class="clear" onclick="clearCalc()">けす</button>
-                    <button class="operator" onclick="pressOperator('/')">÷</button>
-                    <button class="operator" onclick="pressOperator('*')">×</button>
-                    <button class="operator" onclick="pressOperator('-')">－</button>
-                    
-                    <button onclick="pressNum('7')">7</button>
-                    <button onclick="pressNum('8')">8</button>
-                    <button onclick="pressNum('9')">9</button>
-                    <button class="operator" onclick="pressOperator('+')">＋</button>
-                    
-                    <button onclick="pressNum('4')">4</button>
-                    <button onclick="pressNum('5')">5</button>
-                    <button onclick="pressNum('6')">6</button>
-                    <button class="equal" style="grid-column: 4; grid-row: 3 / span 2; height: 100%;" onclick="calculate()">＝</button>
-                    
-                    <button onclick="pressNum('1')">1</button>
-                    <button onclick="pressNum('2')">2</button>
-                    <button onclick="pressNum('3')">3</button>
-                    
-                    <button style="grid-column: span 2;" onclick="pressNum('0')">0</button>
-                    <button onclick="pressNum('.')">.</button>
-                </div>
-            </div>
-
-            <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.3); margin: 15px 0;">
-
-<!-- Googleフォーム（背景白・サイズ自動調整） -->
-<div style="background-color: #ffffff; padding: 20px; border-radius: 8px; max-width: 640px; margin: 20px auto; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdPhwenRq9KiQ8N4PnseBWHR-OwWHDx0vucpUCflNeibR3VQw/viewform?embedded=true" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます…</iframe>
-</div>
-
+        </div>
     </div>
 
     <script>
-  // 初期設定モーダルと通常設定の連動
+        // 折りたたみ用関数
+        function toggleSection(id) {
+            const section = document.getElementById(id);
+            section.classList.toggle("show");
+        }
+
+        // 初期設定モーダルと通常設定の連動
         function syncFromInit(type) {
             if (type === 'bg') {
                 document.getElementById('bg-selector').value = document.getElementById('init-bg-selector').value;
@@ -615,13 +631,11 @@
 
         // 2. 画面読み込み時の初期化処理
         window.addEventListener('DOMContentLoaded', () => {
-            // 初回アクセスチェック
             const isFirstTime = localStorage.getItem("cogie_first_time");
             if (!isFirstTime) {
                 document.getElementById("first-setup-modal").style.display = "flex";
             }
 
-            loadComments();
             initAudioDB();   
             initBgDB();      
             
@@ -634,47 +648,6 @@
             document.getElementById("username-input").value = savedName;
             document.getElementById("init-username-input").value = savedName;
         });
-
-        // 3. コメント機能
-        function addComment() {
-            const inputTag = document.getElementById("comment-input");
-            const commentText = inputTag.value.trim(); 
-            if (commentText === "") return; 
-            createCommentDOM(commentText);
-            saveCommentToStorage(commentText);
-            inputTag.value = "";
-        }
-
-        function createCommentDOM(text) {
-            const newBox = document.createElement("div");
-            newBox.className = "comment-box";
-            newBox.textContent = text;
-            const listTag = document.getElementById("comment-list");
-            listTag.insertBefore(newBox, listTag.firstChild);
-        }
-
-        function saveCommentToStorage(text) {
-            let comments = JSON.parse(localStorage.getItem("cogie_comments")) || [];
-            comments.push(text);
-            localStorage.setItem("cogie_comments", JSON.stringify(comments));
-        }
-
-        function loadComments() {
-            let comments = JSON.parse(localStorage.getItem("cogie_comments")) || [];
-            comments.forEach(text => { createCommentDOM(text); });
-        }
-
-        function clearAllComments() {
-            if (confirm("すべてのコメントを完全に消去してもよろしいですか？")) {
-                localStorage.removeItem("cogie_comments");
-                const listTag = document.getElementById("comment-list");
-                listTag.innerHTML = "";
-                const defaultBox = document.createElement("div");
-                defaultBox.className = "comment-box";
-                defaultBox.textContent = "コメントはまだありません。";
-                listTag.appendChild(defaultBox);
-            }
-        }
 
         // 4. 背景切り替え機能
         let bgDb = null;
@@ -935,7 +908,7 @@
         // 8. 電卓用の処理
         const screen = document.getElementById("calc-screen");
         let currentInput = "0"; 
-        let formula = "";       
+        let formula = "";        
 
         function pressNum(val) {
             if (currentInput === "0" && val !== ".") { currentInput = val; } else { currentInput += val; }
