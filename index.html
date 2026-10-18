@@ -477,21 +477,26 @@
 
               <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.2); margin: 12px 0;">
         
-            <div style="background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.3); padding: 12px; border-radius: 8px;">
-                <p><b id="about-title">このページについて</b></p>
-                <p><b id="about-p1">1.僕について</b></p>
-                <p id="about-p2">はじめまして。</p>
-                <p>cogie0806です。</p>
-                <p id="about-p3">よろしければ僕のフォローよろしくお願いいたします。</p>
-                <a href="https://scratch.mit.edu/users/cogie0806/" target="_blank">・Scratch</a><br>
-                <a href="https://minecraft-mcworld.com/author/a850cd4c8614f807c8bf03559472f5933a301cd2/" target="_blank">・クラフターズコロニー</a><br>
-                <a href="https://www.roblox.com/ja/users/10697827229/profile" target="_blank">・Roblox</a>
-                <p><b id="about-p4">2.このページの作者</b></p>
-                <p id="about-p5">リクエスト・アップロード・簡単なバグ修正: cogie0806</p>
-                <p id="about-p6">HTML作成: Google AI様</p>
-                <p id="about-p7">このページの説明は以上です。</p>
-                <p>cogie0806</p>
+            <!-- ℹ️ このページについて（折りたたみ可能） -->
+            <button class="toggle-section-btn" onclick="toggleSection('about-section')">ℹ️ このページについてをひらく / とじる</button>
+            <div id="about-section" class="collapsible-content">
+                <div style="background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.3); padding: 12px; border-radius: 8px; margin-top: 5px;">
+                    <p><b id="about-title">このページについて</b></p>
+                    <p><b id="about-p1">1.僕について</b></p>
+                    <p id="about-p2">はじめまして。</p>
+                    <p>cogie0806です。</p>
+                    <p id="about-p3">よろしければ僕のフォローよろしくお願いいたします。</p>
+                    <a href="https://scratch.mit.edu/users/cogie0806/" target="_blank">・Scratch</a><br>
+                    <a href="https://minecraft-mcworld.com/author/a850cd4c8614f807c8bf03559472f5933a301cd2/" target="_blank">・クラフターズコロニー</a><br>
+                    <a href="https://www.roblox.com/ja/users/10697827229/profile" target="_blank">・Roblox</a>
+                    <p><b id="about-p4">2.このページの作者</b></p>
+                    <p id="about-p5">リクエスト・アップロード・簡単なバグ修正: cogie0806</p>
+                    <p id="about-p6">HTML作成: Google AI様</p>
+                    <p id="about-p7">このページの説明は以上です。</p>
+                    <p>cogie0806</p>
+                </div>
             </div>
+
 
             <!-- 🎵 音楽プレイヤー（折りたたみ可能） -->
             <button class="toggle-section-btn" onclick="toggleSection('music-section')">🎵 音楽プレイヤーをひらく / とじる</button>
@@ -624,13 +629,17 @@
 
             <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.3); margin: 15px 0;">
 
-            <!-- Googleフォーム -->
-            <div style="background-color: #ffffff; padding: 10px; border-radius: 8px; margin: 10px 0;">
-              <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdPhwenRq9KiQ8N4PnseBWHR-OwWHDx0vucpUCflNeibR3VQw/viewform?embedded=true" width="100%" height="400" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます…</iframe>
+         <!-- 📝 フィードバック（折りたたみ可能） -->
+            <button class="toggle-section-btn" onclick="toggleSection('feedback-section')">📝 フィードバックをひらく / とじる</button>
+            <div id="feedback-section" class="collapsible-content">
+                <div style="background-color: #ffffff; padding: 10px; border-radius: 8px; margin-top: 5px;">
+                  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdPhwenRq9KiQ8N4PnseBWHR-OwWHDx0vucpUCflNeibR3VQw/viewform?embedded=true" width="100%" height="400" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます…</iframe>
+                </div>
             </div>
 
         </div>
     </div>
+
 
     <script>
         // 折りたたみ用関数
