@@ -170,6 +170,46 @@
             background-color: #2563eb;
         }
 
+<!-- 📝 スケジュール・ToDoリストのデザイン -->
+<style>
+    .todo-box {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 15px;
+        border-radius: 10px;
+        margin-top: 15px;
+    }
+    #todo-input {
+        background: #1f2937;
+        color: white;
+        font-size: 13px;
+        margin-bottom: 5px;
+    }
+    #todo-list {
+        list-style-type: none;
+        padding: 0;
+        margin-top: 10px;
+        max-height: 150px;
+        overflow-y: auto;
+    }
+    #todo-list li {
+        background: rgba(0, 0, 0, 0.3);
+        padding: 6px 10px;
+        margin-bottom: 5px;
+        border-radius: 4px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 14px;
+    }
+    #todo-list li button {
+        background-color: #ef4444;
+        width: auto;
+        padding: 2px 6px;
+        font-size: 12px;
+        margin-top: 0;
+    }
+
+        
         /* ⏱ タイマー用のデザイン */
         .timer-box {
             background: rgba(255, 255, 255, 0.1);
@@ -487,6 +527,69 @@
                     </div>
                 </div>
             </div>
+
+
+            <!-- 📝 スケジュール・ToDoリストのHTML -->
+<button class="toggle-section-btn" onclick="toggleSection('todo-section')">📝 ToDoリストをひらく / とじる</button>
+<div id="todo-section" class="collapsible-content">
+    <div class="todo-box">
+        <p style="margin: 0 0 5px 0; font-size: 14px; font-weight: bold;">📝 やることリスト</p>
+        <input type="text" id="todo-input" placeholder="例: 宿題をする">
+        <button onclick="addTodo()" style="background-color: #10b981;">追加する</button>
+        <ul id="todo-list"></ul>
+    </div>
+</div>
+
+<!-- 📝 ToDoリストのJavaScript -->
+<script>
+    // ページを読み込んだときに保存されたリストを表示する
+    window.addEventListener('DOMContentLoaded', () => {
+        loadTodos();
+    });
+
+    function addTodo() {
+        const input = document.getElementById("todo-input");
+        const taskText = input.value.trim();
+        if (taskText === "") {
+            alert("やることを入力してね！");
+            return;
+        }
+
+        let todos = JSON.parse(localStorage.getItem("cogie_todos")) || [];
+        todos.push(taskText);
+        localStorage.setItem("cogie_todos", JSON.stringify(todos));
+
+        input.value = "";
+        loadTodos();
+    }
+
+    function loadTodos() {
+        const list = document.getElementById("todo-list");
+        list.innerHTML = "";
+        let todos = JSON.parse(localStorage.getItem("cogie_todos")) || [];
+
+        todos.forEach((task, index) => {
+            const li = document.createElement("li");
+            li.textContent = task;
+
+            const deleteBtn = document.createElement("button");
+            deleteBtn.textContent = "けす";
+            deleteBtn.onclick = () => {
+                deleteTodo(index);
+            };
+
+            li.appendChild(deleteBtn);
+            list.appendChild(li);
+        });
+    }
+
+    function deleteTodo(index) {
+        let todos = JSON.parse(localStorage.getItem("cogie_todos")) || [];
+        todos.splice(index, 1);
+        localStorage.setItem("cogie_todos", JSON.stringify(todos));
+        loadTodos();
+    }
+</script>
 
             <!-- 🧮 電卓（折りたたみ可能） -->
             <button class="toggle-section-btn" onclick="toggleSection('calc-section')">🧮 電卓をひらく / とじる</button>
